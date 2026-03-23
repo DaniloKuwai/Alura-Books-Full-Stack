@@ -41,11 +41,15 @@ function Pesquisa(){
                 const textoDigitado = evento.target.value
                 const resultadoPesquisa = livros.filter(livro => livro.nome.includes(textoDigitado))
                 setlivrosPesquisados(resultadoPesquisa)
-            }
-                
+            } 
             }
             ></Input>
-            
+            {livrosPesquisados.map(livro =>(
+                <div>
+                    <p>{livro.nome}</p>
+                    <img src={livro.src}></img>
+                </div>
+            ))}
         </PesquisaContainer>
     )
 }
