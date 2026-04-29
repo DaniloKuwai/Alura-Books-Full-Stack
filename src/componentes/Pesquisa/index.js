@@ -1,7 +1,7 @@
 import Input from '../Input'
 import styled from 'styled-components'
-import { useState } from 'react'
-import { livros } from './dadosPesquisa.js'
+import { useEffect, useState } from 'react' 
+import { getLivros } from '../../servicos/livros'
 
 
 const PesquisaContainer = styled.section`
@@ -30,7 +30,17 @@ const Subtitulo = styled.h3`
 
 function Pesquisa(){
     const [livrosPesquisados, setlivrosPesquisados] = useState([])
+    const [livros, setlivros] = useState([])
 
+    useEffect(() => {
+        fecthLivros()
+    }, [] )
+
+    async function fecthLivros(){
+        const livrosDaApi = await getLivros()
+        setlivros(livrosDaApi)
+    }
+    
     console.log(livrosPesquisados)
     return(
         <PesquisaContainer>
